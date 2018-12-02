@@ -76,7 +76,7 @@ void sll_destroy(sll_node *x)
 bool check(const char *word)
 {
     // Const char can't be 'tolower'ed, so create a copy of word, than change its case and hash it.
-    char word_cpy[strlen(word)];
+    char word_cpy[strlen(word) + 1]; // strlen does not include \0, so +1 is needed
     strcpy(word_cpy, word);
 
     for (int i = 0; i < strlen(word_cpy); i++)
@@ -93,13 +93,6 @@ bool check(const char *word)
     }
 
     sll_node *current = table[hashed].next;
-
-//-- HERE
-
-    if (strcmp("adieu", "hola") == 0)
-        printf("aloha");
-
-//-- HERE
 
     while (strcmp(word_cpy, current->word) != 0) // compare words
     {
